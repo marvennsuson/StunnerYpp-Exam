@@ -18,33 +18,11 @@
                                 <th class=" font-weight-bold">Song Artist</th>
                                 <th class=" font-weight-bold">Song Category</th>
                                 <th class=" font-weight-bold">Date Created</th>
-                                <th class=" font-weight-bold">Action</th>
+                   
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($record as $songs)
-                            <tr>
-                                <td class="align-middle">{{ $songs->title ? $songs->title : '' }}</td>
-                                <td class="align-middle">{{ $songs->artist ? $songs->artist : '' }}</td>
-                                <td class="align-middle">{{ $songs->categ->title ? $songs->categ->title : '' }}</td>
-                                <td class="align-middle"> {{$songs->created_at ? $songs->created_at->format("F d Y") : '---'}}</td>
-                                <td class="align-middle">
-                                    <div class="dropdown">
-                                        <button class="btn btn-rounded btn-white btn-icon" data-toggle="dropdown">
-                                            <i class="mdi mdi-dots-horizontal"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a href="{{route('frontend.home.show',['id' => $songs->id ? $songs->id : ''])}}" class="dropdown-item">show</a>
-                                       
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="4" class="text-center">No Records Found.</td>
-                            </tr>
-                            @endforelse
+                     
                         </tbody>
                     </table>
                 </div>
@@ -72,10 +50,39 @@
 
 
 <script>
-         $(document).ready(function () {
+        
 
-            		$("#songtable").dataTable();
-                })
+            		// $("#songtable").dataTable();
+                    $(document).ready(function () {
+      $.ajaxSetup({
+  headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+  });
+      $("#songtable").dataTable({
+        "columnDefs": [{
+          "orderable": false,
+          "targets": 0
+              }],
+              "autoWidth": false,
+              ajax: "{{ route('frontend.home.getdata') }}",
+              lengthMenu: [10, 25, 50, 100],
+              columns: [
+                          { data: 0 },
+                          { data: 1 },
+                          { data: 2 },
+                          { data: 3 },
+                       
+                      ],
+                  orderable: true,
+                  searchable: true,
+                  deferRender: true,
+                  info: true,
+                  stateSave: true,
+                  clear:true,
+                  destroy: true,
+                  responsive: true,
+      });
+      });
+             
 </script>
 <script>
     $("#delete-confirmation-modal").on('show.bs.modal',function(event){

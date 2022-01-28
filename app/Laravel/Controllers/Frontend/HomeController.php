@@ -75,8 +75,8 @@ class HomeController extends Controller
 
         $output = array(
              "draw" => $draw,
-               "recordsTotal" => $$this->data['record']->count(),
-               "recordsFiltered" => $$this->data['record']->count(),
+               "recordsTotal" => $this->data['record']->count(),
+               "recordsFiltered" => $this->data['record']->count(),
                "data" => $data
           );
         echo json_encode($output);
