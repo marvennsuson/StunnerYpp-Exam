@@ -36,8 +36,7 @@ class ProfileController extends Controller
             'username' => 'required',
             'email' => 'required|email',
             'password' => [
-                'required',
-                'string',
+                'nullable',
                 'min:10',             // must be at least 10 characters in length
                 'regex:/[a-z]/',      // must contain at least one lowercase letter
                 'regex:/[A-Z]/',      // must contain at least one uppercase letter
@@ -48,19 +47,34 @@ class ProfileController extends Controller
          
          if ($validator->fails()) {
             session()->flash('notification-status', "failed");
-			session()->flash('notification-message', "Server Error: Code #{$validator->errors()->first()}");
+			session()->flash('notification-message', "Server Error: Code # {$validator->errors()->first()}");
 			return redirect()->back()->withErrors($validator);
             // return response()->json(['status' => false, 'msg'=>$validator->errors()]);
          }else{
-
-            $data = [
-                'username' => $request->username,
-                'email'  =>  $request->email,
-                'password' => Hash::make($request->password),
-
-             ];
+            try {
+                if(!empty($request->password))
+                {
+                    $data = [
+                        'username' => $request->username,
+                        'email'  =>  $request->email,
+                        'password' => Hash::make($request->password),
+        
+                     ];
+                     goto callback;
+                }
+                else 
+                {
+                    $data = [
+                        'username' => $request->username,
+                        'email'  =>  $request->email,
+                    
+        
+                     ];
+                     goto callback;
+                }
              
-             try {
+         
+                 callback:
                 User::where('id', $id)->update($data);
              } catch (\Throwable $th) {
 
