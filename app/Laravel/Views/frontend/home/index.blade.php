@@ -15,8 +15,8 @@
                         <thead>
                             <tr>
                                 <th class=" font-weight-bold">Song Title</th>
-                                <th class=" font-weight-bold">Song Artist</th>
                                 <th class=" font-weight-bold">Song Category</th>
+                                <th class=" font-weight-bold">Song Artist</th>
                                 <th class=" font-weight-bold">Date Created</th>
                                 <th class=" font-weight-bold">Action</th>
                             </tr>
