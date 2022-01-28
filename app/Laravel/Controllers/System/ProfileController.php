@@ -62,16 +62,15 @@ class ProfileController extends Controller
                      ];
                      goto callback;
                 }
-                else 
-                {
+               
                     $data = [
                         'username' => $request->username,
                         'email'  =>  $request->email,
                     
         
                      ];
-                     goto callback;
-                }
+                  
+               
              
          
                  callback:
