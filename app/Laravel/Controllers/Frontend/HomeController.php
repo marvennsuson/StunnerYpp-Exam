@@ -95,10 +95,10 @@ class HomeController extends Controller
 	public function redirect()
     {
 		//
-        if(Auth::check())
-        {
-			return redirect()->route('system.login');
-        }
+        // if(Auth::check())
+        // {
+		// 	return redirect()->route('system.login');
+        // }
 		return redirect()->route('frontend.home.index');
         
     }
