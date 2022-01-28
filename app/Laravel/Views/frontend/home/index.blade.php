@@ -18,7 +18,7 @@
                                 <th class=" font-weight-bold">Song Artist</th>
                                 <th class=" font-weight-bold">Song Category</th>
                                 <th class=" font-weight-bold">Date Created</th>
-                   
+                                <th class=" font-weight-bold">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,7 +70,7 @@
                           { data: 1 },
                           { data: 2 },
                           { data: 3 },
-                       
+                          { data: 4 },
                       ],
                   orderable: true,
                   searchable: true,

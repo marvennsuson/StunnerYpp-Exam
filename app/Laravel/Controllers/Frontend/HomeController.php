@@ -69,7 +69,18 @@ class HomeController extends Controller
 				$qlv->title,
                 $qlv->categ->title,
                 $qlv->artist,
-				$qlv->created_at->format("F d Y")
+				$qlv->created_at->format("F d Y"),
+				'<td class="align-middle">
+				<div class="dropdown">
+					<button class="btn btn-rounded btn-white btn-icon" data-toggle="dropdown">
+						<i class="mdi mdi-dots-horizontal"></i>
+					</button>
+					<div class="dropdown-menu">
+						<a href="'.route("frontend.home.show", $qlv->id).'" class="dropdown-item">show</a>
+				   
+					</div>
+				</div>
+			</td>',
             );
         }
 
